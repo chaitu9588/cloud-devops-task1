@@ -1,6 +1,8 @@
 ## Troubleshooting
 
 
+# A.Resolving Git Repository Structure and Push Errors
+
 1.	Problem Faced During Git & GitHub Setup
 2.	While setting up my project and pushing the Phase 2 work to GitHub, I initially faced an issue with the Git repository structure. I accidentally initialized Git in my home directory instead of only in the project directory. As a result, Git started showing many files and folders from my home directory as changes.
 3.	I identified the issue by checking the Git repository root using:
@@ -13,3 +15,9 @@
 10.	Add Phase 2 Linux documentation and screenshots
 11.	This helped me understand the importance of having the correct Git repository root and maintaining a proper local-to-remote GitHub repository structure.
 
+# B.GitHub Push and Rebase Error Resolution
+
+1. I initially faced a GitHub authentication error because GitHub does not support using a normal account password for Git operations over HTTPS. I resolved this by using a GitHub Personal Access Token (PAT) for authentication.
+2. After authentication was successful, the git push origin main command was rejected with a "fetch first" error because the remote GitHub repository contained commits that were not present in my local repository. I used git pull --rebase origin main to synchronize the local branch with the remote branch.
+3. The rebase initially could not start because there were uncommitted local changes. I committed the current assignment changes and then ran the rebase again. During the rebase, Git reported a conflict with README.md because the local commit deleted the file while the GitHub version had modified it. I resolved the conflict by keeping the GitHub version of README.md, staged the resolved file, and ran git rebase --continue.
+4. After all conflicts were resolved, the rebase was ready to complete, allowing me to push the updated local main branch to GitHub using git push origin main.
